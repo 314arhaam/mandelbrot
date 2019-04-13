@@ -24,9 +24,8 @@
 */
 double cabs(double real, double imag){
   // Absolute value of complex number real + imag*j
-  return sqrt(real*real + imag*imag);
+  return (real*real + imag*imag);
 }
-
 int mandelbort(double x, double y){
   /*
   Latex:
@@ -36,24 +35,23 @@ int mandelbort(double x, double y){
   */
   double a=x, b=y, temp=0;
   int n = 0, MAX_ITER = 500;  // MAX_ITER works as +inf for convergence check.
-  if (cabs(a+0.245,b) <= 0.5 || cabs(a+1,b) <= 0.24){
+  if ( cabs(a+0.245,b) <= 0.25 || cabs(a+1,b) <= 0.24*0.24){
     /*
     checks if the c is in main central area of fractal, passes the maximum value so it will not be processed and boosts the code.
     NOTE This area is represented using ! in terminal-based fractal above.
     */
     return MAX_ITER;
   }
-  while (n < MAX_ITER && cabs(a, b) < 2){
+  while (n < MAX_ITER && cabs(a, b) < 4){
     temp = a;                 // arbitary variable
-    a = a*a - b*b + x;        // complex multiply, real part
+    a = a * a - b * b + x;    // complex multiply, real part
     b = temp * b * 2 + y;     // complex multiply, imaginary part
     n++;
   }
   return n;
 }
 /*
-Typical coordinate system in picture plane:
-NOTE values are arbitary
+Typical coordinate system in picture plane: NOTE values are arbitary
 _______________________________________
 |-4  -3  -2  -1  0  1  2  3  4 -> [X] |
 _________________1______***____________
@@ -86,18 +84,15 @@ int mandeldraw(double y){
   fclose(output_file);
   return 0;
 }
-
 int main(){
   // lines with /*  Clock Line n */ appeared at first, could be used with "ctime" library, anywhere WITH THE SAME ORDER
   /*  Clock Line 1 */clock_t begin = clock();
-  mandeldraw(500);
+  mandeldraw(4000);
   /*  Clock Line 2 */clock_t end = clock();
   /*  Clock Line 3 */double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
   printf("elapsed time: %f (s)\n", time_spent);
   return 0;
 }
-// clang Mandelbort.cpp -o Mandelout
-// ./Mandelout
 //  non-pointer based performance
 //    CPU: Intel Core i5 1.8 GHz
 //************************************
@@ -107,4 +102,3 @@ int main(){
 // 2000 : elapsed time:   2.211209 (s)
 // 1000 : elapsed time:   0.689788 (s)
 // 500  : elapsed time:   0.224861 (s)
-//
