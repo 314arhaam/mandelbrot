@@ -87,7 +87,7 @@ int mandeldraw(double y){
 int main(){
   // lines with /*  Clock Line n */ appeared at first, could be used with "ctime" library, anywhere WITH THE SAME ORDER
   /*  Clock Line 1 */clock_t begin = clock();
-  mandeldraw(4000);
+  mandeldraw(16000);
   /*  Clock Line 2 */clock_t end = clock();
   /*  Clock Line 3 */double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
   printf("elapsed time: %f (s)\n", time_spent);
@@ -96,9 +96,9 @@ int main(){
 //  non-pointer based performance
 //    CPU: Intel Core i5 1.8 GHz
 //************************************
-// 16000: elapsed time: 120.330728 (s)
-// 8000 : elapsed time:  30.975784 (s)
-// 4000 : elapsed time:   8.097667 (s)
-// 2000 : elapsed time:   2.211209 (s)
-// 1000 : elapsed time:   0.689788 (s)
-// 500  : elapsed time:   0.224861 (s)
+// 16000: elapsed time: 116.089840 (s)
+// 8000 : elapsed time:  29.185882 (s)
+// 4000 : elapsed time:   7.728271 (s)
+// 2000 : elapsed time:   2.176628 (s)
+// 1000 : elapsed time:   0.645604 (s)
+// 500  : elapsed time:   0.208756 (s)
